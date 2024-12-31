@@ -4,7 +4,7 @@ import React from 'react'
 const Home = ({navigation}) => {
   return (
     <View>
-      <Button title="Scan QR" onPress={()=>navigation.navigate('QRScanner')}/>
+      <Button title="Scan QR" onPress={()=>navigation.navigate('MenuList')}/>
     </View>
   )
 }
