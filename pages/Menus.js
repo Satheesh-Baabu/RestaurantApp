@@ -1,14 +1,25 @@
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { Table, Row, Rows } from 'react-native-table-component';
+import axios from 'axios'
 
 const Menus = () => {
-    const [data,setData]=useState();
-  const head = ['S.No', 'Food Name', 'Price', 'Add Cart'];
+    const [data,setData]=useState([]);
+  const head = ["Image",'Food Name',"Description","Food Type", 'Price', 'Add Cart'];
   useEffect(()=>{
-    axios.get('http://localhost:8000')
-    .then((res)=>setData(res.data))
-    .catch(err=>console.log("Error fetching data"))
+    axios.get('https://projectbackend-pfyy.onrender.com/menulist')
+    .then((res)=>{
+      console.log(res.data)
+      const formattedData = res.data.map((item, index) => [
+        item.filename,
+        item.foodname,
+        item.description, 
+        item.foodtype,
+        `Rs.${item.price}`,
+        "Add"
+      ]);
+      setData(formattedData);})
+    .catch(err=>console.log("Error fetching data",err))
   },[])
     
   return (
