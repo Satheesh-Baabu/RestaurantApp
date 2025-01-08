@@ -7,7 +7,7 @@ const Menus = () => {
 
   useEffect(() => {
     axios
-      .get('https://projectbackend-pfyy.onrender.com/menulist')
+      .get('http://localhost:8000/menulist')
       .then((res) => {
         console.log(res.data);
         setData(res.data);
